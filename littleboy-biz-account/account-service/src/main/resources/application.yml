@@ -1,0 +1,12 @@
+server:
+  port: 8010
+
+spring:
+  application:
+    name: account-service
+  profiles:
+    active: test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.100.120:8848
