@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.little.cloud.dao.AccountVODao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.little.cloud.dto.AccountVO">
+        <result column="id" property="id"/>
+        <result column="account_code" property="accountCode"/>
+        <result column="account_name" property="accountName"/>
+        <result column="amount" property="amount"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `account_code`,
+        `account_name`,
+        `amount`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO account_v_o (
+            `id`,
+            `account_code`,
+            `account_name`,
+            `amount`
+        ) VALUES (
+            #{pojo.id},
+            #{pojo.accountCode},
+            #{pojo.accountName},
+            #{pojo.amount}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO account_v_o
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null"> `id`,</if>
+            <if test="pojo.accountCode!=null"> `account_code`,</if>
+            <if test="pojo.accountName!=null"> `account_name`,</if>
+            <if test="pojo.amount!=null"> `amount`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null">#{pojo.id},</if>
+            <if test="pojo.accountCode!=null">#{pojo.accountCode},</if>
+            <if test="pojo.accountName!=null">#{pojo.accountName},</if>
+            <if test="pojo.amount!=null">#{pojo.amount},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO account_v_o (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.accountCode},
+            #{pojo.accountName},
+            #{pojo.amount}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE account_v_o
+        <set>
+            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
+            <if test="pojo.accountCode != null"> `account_code` = #{pojo.accountCode}, </if>
+            <if test="pojo.accountName != null"> `account_name` = #{pojo.accountName}, </if>
+            <if test="pojo.amount != null"> `amount` = #{pojo.amount} </if>
+        </set>
+        WHERE `id` = #{pojo.id}
+    </update>
+</mapper>
+

@@ -1,9 +1,9 @@
 server:
-  port: 8010
+  port: 8011
 
 spring:
   application:
-    name: account-account
+    name: account-order
   profiles:
     active: test
   cloud:
