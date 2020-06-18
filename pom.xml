@@ -18,6 +18,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>littleboy-admin</module>
+    <module>littleboy-biz-api</module>
     <module>littleboy-biz-account</module>
     <module>littleboy-biz-order</module>
     <module>littleboy-biz-product</module>
