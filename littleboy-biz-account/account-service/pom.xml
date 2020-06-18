@@ -48,12 +48,6 @@
       <version>1.18.8</version>
     </dependency>
 
-    <!--database-->
-    <!--    <dependency>-->
-    <!--      <groupId>mysql</groupId>-->
-    <!--      <artifactId>mysql-connector-java</artifactId>-->
-    <!--    </dependency>-->
-
     <!--mysql数据库驱动-->
     <dependency>
       <groupId>mysql</groupId>
