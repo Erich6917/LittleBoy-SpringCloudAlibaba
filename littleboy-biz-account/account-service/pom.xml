@@ -26,47 +26,42 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-<!--      <exclusions>-->
-<!--        <exclusion>-->
-<!--          <groupId>org.springframework.boot</groupId>-->
-<!--          <artifactId>spring-boot-starter-logging</artifactId>-->
-<!--        </exclusion>-->
-<!--      </exclusions>-->
+      <!--      <exclusions>-->
+      <!--        <exclusion>-->
+      <!--          <groupId>org.springframework.boot</groupId>-->
+      <!--          <artifactId>spring-boot-starter-logging</artifactId>-->
+      <!--        </exclusion>-->
+      <!--      </exclusions>-->
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-starter-log4j2</artifactId>-->
-<!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>org.springframework.boot</groupId>-->
+    <!--      <artifactId>spring-boot-starter-log4j2</artifactId>-->
+    <!--    </dependency>-->
 
     <!--Spring Cloud Alibaba-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+      <version>0.9.0.RELEASE</version>
     </dependency>
 
     <!--database-->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-    </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>mysql</groupId>-->
+    <!--      <artifactId>mysql-connector-java</artifactId>-->
+    <!--    </dependency>-->
 
-<!--    <dependency>-->
-<!--      <groupId>com.baomidou</groupId>-->
-<!--      <artifactId>mybatis-plus-boot-starter</artifactId>-->
-<!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>com.baomidou</groupId>-->
+    <!--      <artifactId>mybatis-plus-boot-starter</artifactId>-->
+    <!--    </dependency>-->
 
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>com.little.cloud</groupId>
-      <artifactId>account-api</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>org.projectlombok</groupId>-->
+    <!--      <artifactId>lombok</artifactId>-->
+    <!--      <optional>true</optional>-->
+    <!--    </dependency>-->
 
   </dependencies>
 
@@ -78,5 +73,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
