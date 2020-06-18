@@ -76,5 +76,16 @@
         </set>
         WHERE `id` = #{pojo.id}
     </update>
+
+
+    <select id="getAccountListByCode" resultType="com.little.cloud.dto.AccountVO">
+        SELECT
+              id,
+              account_code AS accountCode,
+              ACCOUNT_NAME AS accountName,
+              amount
+        FROM `account`
+        WHERE account_code = #{accountCode}
+    </select>
 </mapper>
 

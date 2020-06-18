@@ -2,6 +2,7 @@ package com.little.cloud.controller;
 
 import com.little.cloud.dto.AccountVO;
 import com.little.cloud.service.AccountVOService;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +24,11 @@ public class AccountController {
   private AccountVOService accountService;
 
   @GetMapping("/account/{accountCode}")
-  public AccountVO getByCode(@PathVariable String accountCode) {
+  public List<AccountVO> getByCode(@PathVariable String accountCode) {
     log.info("get account detail,accountCode is :{}", accountCode);
 //    return accountService.sel(accountCode);
-    return null;
+    List<AccountVO> list =  accountService.getAccountListByCode(accountCode);
+    return list;
   }
 
   @PostMapping("/account/update")

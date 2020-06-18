@@ -37,11 +37,11 @@
 
 
     <!-- account-api引入 -->
-<!--    <dependency>-->
-<!--      <groupId>com.little.cloud</groupId>-->
-<!--      <artifactId>account-api</artifactId>-->
-<!--      <version>0.0.1-SNAPSHOT</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>com.little.cloud</groupId>
+      <artifactId>account-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>

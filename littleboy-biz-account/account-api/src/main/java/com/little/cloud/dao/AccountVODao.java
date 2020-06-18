@@ -15,4 +15,6 @@ public interface AccountVODao {
     int insertList(@Param("pojos") List<AccountVO> pojo);
 
     int update(@Param("pojo") AccountVO pojo);
+
+    List<AccountVO> getAccountListByCode(@Param("accountCode") String accountCode);
 }

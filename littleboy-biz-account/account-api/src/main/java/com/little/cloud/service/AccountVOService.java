@@ -27,4 +27,8 @@ public class AccountVOService{
     public int update(AccountVO pojo){
         return accountVODao.update(pojo);
     }
+
+    public List<AccountVO> getAccountListByCode(String accountCode) {
+        return accountVODao.getAccountListByCode(accountCode);
+    }
 }
