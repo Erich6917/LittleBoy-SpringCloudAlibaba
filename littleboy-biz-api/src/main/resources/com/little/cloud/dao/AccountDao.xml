@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.little.cloud.dao.AccountVODao">
+<mapper namespace="com.little.cloud.dao.AccountDao">
     <!--auto generated Code-->
-    <resultMap id="AllColumnMap" type="com.little.cloud.dto.AccountVO">
+    <resultMap id="AllColumnMap" type="com.little.cloud.dto.Account">
         <result column="id" property="id"/>
         <result column="account_code" property="accountCode"/>
         <result column="account_name" property="accountName"/>
@@ -78,8 +78,17 @@
     </update>
 
 
-    <select id="getAccountListByCode" resultType="com.little.cloud.dto.AccountVO">
+    <select id="getAccountListByCode" resultType="com.little.cloud.dto.Account">
         SELECT
+              id,
+              account_code AS accountCode,
+              ACCOUNT_NAME AS accountName,
+              amount
+        FROM `account`
+        WHERE account_code = #{accountCode}
+    </select>
+    <select id="getAccountByCode" resultType="com.little.cloud.dto.Account">
+   SELECT
               id,
               account_code AS accountCode,
               ACCOUNT_NAME AS accountName,

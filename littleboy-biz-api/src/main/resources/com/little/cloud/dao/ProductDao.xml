@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.little.cloud.dao.ProductDao">
+  <!--auto generated Code-->
+  <resultMap id="AllColumnMap" type="com.little.cloud.dto.Product">
+    <result column="id" property="id"/>
+    <result column="product_code" property="productCode"/>
+    <result column="account_name" property="accountName"/>
+    <result column="price" property="price"/>
+  </resultMap>
+
+  <!--auto generated Code-->
+  <sql id="all_column">
+        `id`,
+        `product_code`,
+        `account_name`,
+        `price`
+    </sql>
+
+  <!--auto generated Code-->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO product (
+            `id`,
+            `product_code`,
+            `account_name`,
+            `price`
+        ) VALUES (
+            #{pojo.id},
+            #{pojo.productCode},
+            #{pojo.accountName},
+            #{pojo.price}
+        )
+    </insert>
+
+  <!--auto generated Code-->
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+    INSERT INTO product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.id!=null">`id`,</if>
+      <if test="pojo.productCode!=null">`product_code`,</if>
+      <if test="pojo.accountName!=null">`account_name`,</if>
+      <if test="pojo.price!=null">`price`,</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.id!=null">#{pojo.id},</if>
+      <if test="pojo.productCode!=null">#{pojo.productCode},</if>
+      <if test="pojo.accountName!=null">#{pojo.accountName},</if>
+      <if test="pojo.price!=null">#{pojo.price},</if>
+    </trim>
+  </insert>
+
+  <!--auto generated Code-->
+  <insert id="insertList">
+    INSERT INTO product (
+    <include refid="all_column"/>
+    )VALUES
+    <foreach collection="pojos" item="pojo" index="index" separator=",">
+      (
+      #{pojo.id},
+      #{pojo.productCode},
+      #{pojo.accountName},
+      #{pojo.price}
+      )
+    </foreach>
+  </insert>
+
+  <!--auto generated Code-->
+  <update id="update">
+    UPDATE product
+    <set>
+      <if test="pojo.id != null">`id` = #{pojo.id},</if>
+      <if test="pojo.productCode != null">`product_code` = #{pojo.productCode},</if>
+      <if test="pojo.accountName != null">`account_name` = #{pojo.accountName},</if>
+      <if test="pojo.price != null">`price` = #{pojo.price}</if>
+    </set>
+    WHERE `id` = #{pojo.id}
+  </update>
+  <select id="getProductByCode" resultType="com.little.cloud.dto.Product">
+
+        select
+        product_code as productCode,
+        product_name as productName,
+        `count`,
+        price
+        from product
+        where product_code = #{productCode}
+  </select>
+</mapper>
+

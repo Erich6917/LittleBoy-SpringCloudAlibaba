@@ -1,13 +1,17 @@
 package com.little.cloud.controller;
 
-import com.little.cloud.dto.AccountVO;
-import com.little.cloud.service.AccountVOService;
+import com.little.cloud.commom.ResultData;
+import com.little.cloud.dto.Account;
+import com.little.cloud.dto.Order;
+import com.little.cloud.service.AccountService;
+import com.little.cloud.service.OrderService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,38 +22,38 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
+@RequestMapping("/api/account")
 public class AccountController {
 
   @Autowired
-  private AccountVOService accountService;
+  private AccountService accountService;
+  @Autowired
+  private OrderService orderService;
 
-  @GetMapping("/account/{accountCode}")
-  public List<AccountVO> getByCode(@PathVariable String accountCode) {
+  @GetMapping("/{accountCode}")
+  public ResultData<List<Account>> getByCode(@PathVariable String accountCode) {
     log.info("get account detail,accountCode is :{}", accountCode);
-//    return accountService.sel(accountCode);
-    List<AccountVO> list =  accountService.getAccountListByCode(accountCode);
-    return list;
+    List<Account> list = accountService.getAccountByCode(accountCode);
+    return ResultData.success(list);
   }
 
-  @PostMapping("/account/update")
-  public String update(AccountVO accountVO) {
+  @PostMapping("/update")
+  public ResultData<String> update(Account accountVO) {
     log.info("update account:{}", accountVO);
-//    return accountService.updateAccount(accountVO);
-    return "UPDATE SUCCESS";
+    return ResultData.success("SUCCESS");
   }
 
-  @PostMapping("/account/insert")
-  public String insert(AccountVO accountVO) {
+  @PostMapping("/insert")
+  public ResultData insert(Account accountVO) {
     log.info("insert account:{}", accountVO);
-//    return accountService.insertAccount(accountVO);
     accountService.insert(accountVO);
-    return "SUCCESS";
+    return ResultData.success("SUCCESS");
   }
 
-  @PostMapping("/account/delete")
-  public String delete(@RequestParam String accountCode) {
+  @PostMapping("/delete")
+  public ResultData delete(@RequestParam String accountCode) {
     log.info("delete account,accountCode is {}", accountCode);
 //    return accountService.(accountCode);
-    return "DELETE SUCCESS";
+    return ResultData.success("SUCCESS");
   }
 }

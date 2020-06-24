@@ -22,10 +22,17 @@
 
 
   <dependencies>
-    <!-- account-api引入 -->
+    <!-- biz-api引入 -->
     <dependency>
       <groupId>com.little.cloud</groupId>
       <artifactId>littleboy-biz-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <!-- biz-common 引入 -->
+    <dependency>
+      <groupId>com.little.cloud</groupId>
+      <artifactId>littleboy-biz-common</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
 

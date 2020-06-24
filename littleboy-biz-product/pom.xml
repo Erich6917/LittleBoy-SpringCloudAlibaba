@@ -17,4 +17,5 @@
     <module>product-api</module>
     <module>product-service</module>
   </modules>
+  <packaging>pom</packaging>
 </project>

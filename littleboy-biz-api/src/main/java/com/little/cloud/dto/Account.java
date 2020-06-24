@@ -9,7 +9,7 @@ import lombok.Data;
  * @Date 2020-6-17
  */
 @Data
-public class AccountVO {
+public class Account {
 
   private Long id;
   private String accountCode;
