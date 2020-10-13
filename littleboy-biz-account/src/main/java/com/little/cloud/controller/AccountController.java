@@ -26,20 +26,12 @@ public class AccountController {
 
   @Autowired
   private AccountService accountService;
-  @Autowired
-  private OrderService orderService;
 
   @GetMapping("/{accountCode}")
   public ResultData<List<Account>> getByCode(@PathVariable String accountCode) {
     log.info("get account detail,accountCode is :{}", accountCode);
     List<Account> list = accountService.getAccountByCode(accountCode);
     return ResultData.success(list);
-  }
-
-  @PostMapping("/update")
-  public ResultData<String> update(Account accountVO) {
-    log.info("update account:{}", accountVO);
-    return ResultData.success("SUCCESS");
   }
 
   @PostMapping("/insert")
@@ -49,10 +41,4 @@ public class AccountController {
     return ResultData.success("SUCCESS");
   }
 
-  @PostMapping("/delete")
-  public ResultData delete(@RequestParam String accountCode) {
-    log.info("delete account,accountCode is {}", accountCode);
-//    return accountService.(accountCode);
-    return ResultData.success("SUCCESS");
-  }
 }

@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,4 +31,12 @@ public class ProductController {
     Product product = productService.getProductByCode(productCode);
     return ResultData.success(product);
   }
+
+  @PostMapping("/insert")
+  public ResultData<String> insert(@RequestBody Product product){
+    log.info("insert product:{}",product);
+    productService.insert(product);
+    return ResultData.success("insert product succeed");
+  }
+
 }
