@@ -22,6 +22,7 @@
     <module>littleboy-biz-account</module>
     <module>littleboy-biz-order</module>
     <module>littleboy-biz-product</module>
+    <module>littleboy-gateway</module>
   </modules>
   <packaging>pom</packaging>
 
