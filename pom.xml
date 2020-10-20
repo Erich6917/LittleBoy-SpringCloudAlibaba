@@ -16,6 +16,7 @@
     <module>littleboy-biz-order</module>
     <module>littleboy-biz-product</module>
     <module>littleboy-gateway</module>
+    <module>littleboy-service-seckill</module>
   </modules>
   <packaging>pom</packaging>
 
