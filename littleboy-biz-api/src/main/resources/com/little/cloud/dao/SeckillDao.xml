@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.little.cloud.dao.SeckillDao">
+  <!--auto generated Code-->
+  <resultMap id="AllColumnMap" type="com.little.cloud.dto.Seckill">
+    <result column="seckill_id" property="seckillId"/>
+    <result column="name" property="name"/>
+    <result column="number" property="number"/>
+    <result column="start_time" property="startTime"/>
+    <result column="end_time" property="endTime"/>
+    <result column="create_time" property="createTime"/>
+    <result column="version" property="version"/>
+  </resultMap>
+
+  <!--auto generated Code-->
+  <sql id="all_column">
+        `seckill_id`,
+        `name`,
+        `number`,
+        `start_time`,
+        `end_time`,
+        `create_time`,
+        `version`
+    </sql>
+
+  <!--auto generated Code-->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.seckillId">
+        INSERT INTO seckill (
+            `seckill_id`,
+            `name`,
+            `number`,
+            `start_time`,
+            `end_time`,
+            `create_time`,
+            `version`
+        ) VALUES (
+            #{pojo.seckillId},
+            #{pojo.name},
+            #{pojo.number},
+            #{pojo.startTime},
+            #{pojo.endTime},
+            #{pojo.createTime},
+            #{pojo.version}
+        )
+    </insert>
+
+  <!--auto generated Code-->
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.seckillId">
+    INSERT INTO seckill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.seckillId!=null">`seckill_id`,</if>
+      <if test="pojo.name!=null">`name`,</if>
+      <if test="pojo.number!=null">`number`,</if>
+      <if test="pojo.startTime!=null">`start_time`,</if>
+      <if test="pojo.endTime!=null">`end_time`,</if>
+      <if test="pojo.createTime!=null">`create_time`,</if>
+      <if test="pojo.version!=null">`version`,</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.seckillId!=null">#{pojo.seckillId},</if>
+      <if test="pojo.name!=null">#{pojo.name},</if>
+      <if test="pojo.number!=null">#{pojo.number},</if>
+      <if test="pojo.startTime!=null">#{pojo.startTime},</if>
+      <if test="pojo.endTime!=null">#{pojo.endTime},</if>
+      <if test="pojo.createTime!=null">#{pojo.createTime},</if>
+      <if test="pojo.version!=null">#{pojo.version},</if>
+    </trim>
+  </insert>
+
+  <!--auto generated Code-->
+  <insert id="insertList">
+    INSERT INTO seckill (
+    <include refid="all_column"/>
+    )VALUES
+    <foreach collection="pojos" item="pojo" index="index" separator=",">
+      (
+      #{pojo.seckillId},
+      #{pojo.name},
+      #{pojo.number},
+      #{pojo.startTime},
+      #{pojo.endTime},
+      #{pojo.createTime},
+      #{pojo.version}
+      )
+    </foreach>
+  </insert>
+
+  <!--auto generated Code-->
+  <update id="update">
+    UPDATE seckill
+    <set>
+      <if test="pojo.seckillId != null">`seckill_id` = #{pojo.seckillId},</if>
+      <if test="pojo.name != null">`name` = #{pojo.name},</if>
+      <if test="pojo.number != null">`number` = #{pojo.number},</if>
+      <if test="pojo.startTime != null">`start_time` = #{pojo.startTime},</if>
+      <if test="pojo.endTime != null">`end_time` = #{pojo.endTime},</if>
+      <if test="pojo.createTime != null">`create_time` = #{pojo.createTime},</if>
+      <if test="pojo.version != null">`version` = #{pojo.version}</if>
+    </set>
+    WHERE `seckill_id` = #{pojo.seckillId}
+  </update>
+  <update id="initSeckill">
+    UPDATE seckill SET number = 10000 WHERE seckill_id= #{seckillId}
+  </update>
+  <select id="selectById" resultMap="AllColumnMap">
+    select
+    <include refid="all_column"></include>
+    from
+    seckill
+    where
+    seckill_id= #{seckillId}
+  </select>
+  <update id="cutOne">
+        UPDATE seckill  SET number=number-1 WHERE seckill_id=#{seckillId}
+   </update>
+</mapper>
+

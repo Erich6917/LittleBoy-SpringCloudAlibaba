@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.little.cloud.dao.SuccessKilledDao">
+  <!--auto generated Code-->
+  <resultMap id="AllColumnMap" type="com.little.cloud.dto.SuccessKilled">
+    <result column="seckill_id" property="seckillId"/>
+    <result column="user_id" property="userId"/>
+    <result column="state" property="state"/>
+    <result column="create_time" property="createTime"/>
+  </resultMap>
+
+  <!--auto generated Code-->
+  <sql id="all_column">
+        `seckill_id`,
+        `user_id`,
+        `state`,
+        `create_time`
+    </sql>
+
+  <!--auto generated Code-->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.seckillId">
+        INSERT INTO success_killed (
+            `seckill_id`,
+            `user_id`,
+            `state`,
+            `create_time`
+        ) VALUES (
+            #{pojo.seckillId},
+            #{pojo.userId},
+            #{pojo.state},
+            #{pojo.createTime}
+        )
+    </insert>
+
+  <!--auto generated Code-->
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.seckillId">
+    INSERT INTO success_killed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.seckillId!=null">`seckill_id`,</if>
+      <if test="pojo.userId!=null">`user_id`,</if>
+      <if test="pojo.state!=null">`state`,</if>
+      <if test="pojo.createTime!=null">`create_time`,</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.seckillId!=null">#{pojo.seckillId},</if>
+      <if test="pojo.userId!=null">#{pojo.userId},</if>
+      <if test="pojo.state!=null">#{pojo.state},</if>
+      <if test="pojo.createTime!=null">#{pojo.createTime},</if>
+    </trim>
+  </insert>
+
+  <!--auto generated Code-->
+  <insert id="insertList">
+    INSERT INTO success_killed (
+    <include refid="all_column"/>
+    )VALUES
+    <foreach collection="pojos" item="pojo" index="index" separator=",">
+      (
+      #{pojo.seckillId},
+      #{pojo.userId},
+      #{pojo.state},
+      #{pojo.createTime}
+      )
+    </foreach>
+  </insert>
+
+  <!--auto generated Code-->
+  <update id="update">
+    UPDATE success_killed
+    <set>
+      <if test="pojo.seckillId != null">`seckill_id` = #{pojo.seckillId},</if>
+      <if test="pojo.userId != null">`user_id` = #{pojo.userId},</if>
+      <if test="pojo.state != null">`state` = #{pojo.state},</if>
+      <if test="pojo.createTime != null">`create_time` = #{pojo.createTime}</if>
+    </set>
+    WHERE `seckill_id` = #{pojo.seckillId}
+  </update>
+  <delete id="deleteById" >
+        DELETE FROM  success_killed WHERE seckill_id=#{seckillId}
+  </delete>
+  <select id="countKilled" resultType="int">
+    SELECT count(1) FROM success_killed WHERE seckill_id=#{seckillId}
+    </select>
+</mapper>
+
