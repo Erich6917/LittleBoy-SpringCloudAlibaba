@@ -30,7 +30,7 @@ public class SeckillController {
    */
   private static ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize,
       corePoolSize + 1, 10l, TimeUnit.SECONDS,
-      new LinkedBlockingQueue<>(1000));
+      new LinkedBlockingQueue<>(2000));
 
   @Autowired
   private ISeckillService seckillService;
@@ -41,13 +41,12 @@ public class SeckillController {
     log.info("开始秒杀一(会出现超卖) {}", killId);
     seckillService.initSeckill(killId);
 
-    int totalNum = 1000;
+    int totalNum = 1050;
     CountDownLatch latch = new CountDownLatch(totalNum);
     for (int i = 0; i < totalNum; i++) {
       final long userId = i;
-      log.info("抢购中 user {}", userId);
-
       Runnable task = () -> {
+        log.info("抢购中 user {}", userId);
         seckillService.startSeckill(killId, userId);
         //数量消耗要在任务执行到的时候扣掉
         latch.countDown();
@@ -60,22 +59,70 @@ public class SeckillController {
       log.info("秒杀统计异常 {}", e);
     }
     int killCount = seckillService.getCountKill(killId);
-    log.info("本次秒杀商品ID [{}]攻击秒杀个数 {}", killId, killCount);
+    log.info("本次秒杀商品ID [{}] 抢购人数{} 秒杀个数 {}", killId, totalNum, killCount);
 
     return Result.ok();
   }
 
   @ApiOperation(value = "秒杀二(程序锁)", nickname = "科帮网")
   @PostMapping("/startLock")
-  public Result startLock(long seckillId) {
-    log.info("开始秒杀二(正常)");
+  public Result startLock(long killId) {
+    log.info("开始秒杀二(出现超卖,事务提交和锁释放的前后顺序) {}", killId);
+    seckillService.initSeckill(killId);
+    int totalNum = 20;
+    CountDownLatch latch = new CountDownLatch(totalNum);
+    for (int i = 0; i < totalNum; i++) {
+      final long userId = i;
+      Runnable task = () -> {
+        Boolean flag =  seckillService.startSeckillLock(killId, userId);
+        if(flag){
+          log.info("抢购成功 user {}", userId);
+        }else{
+          log.info("抢购失败 user {}", userId);
+        }
+        //数量消耗要在任务执行到的时候扣掉
+        latch.countDown();
+      };
+      executor.execute(task);
+    }
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      log.info("秒杀统计异常 {}", e);
+    }
+    int killCount = seckillService.getCountKill(killId);
+    log.info("本次秒杀商品ID [{}] 抢购人数{} 秒杀个数 {}", killId, totalNum, killCount);
     return Result.ok();
   }
 
   @ApiOperation(value = "秒杀三(AOP程序锁)", nickname = "科帮网")
   @PostMapping("/startAopLock")
-  public Result startAopLock(long seckillId) {
+  public Result startAopLock(long killId) {
     log.info("开始秒杀三(正常)");
+    seckillService.initSeckill(killId);
+    int totalNum = 20;
+    CountDownLatch latch = new CountDownLatch(totalNum);
+    for (int i = 0; i < totalNum; i++) {
+      final long userId = i;
+      Runnable task = () -> {
+        Boolean flag =  seckillService.startAopSeckillLock(killId, userId);
+        if(flag){
+          log.info("抢购成功 user {}", userId);
+        }else{
+          log.info("抢购失败 user {}", userId);
+        }
+        //数量消耗要在任务执行到的时候扣掉
+        latch.countDown();
+      };
+      executor.execute(task);
+    }
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      log.info("秒杀统计异常 {}", e);
+    }
+    int killCount = seckillService.getCountKill(killId);
+    log.info("本次秒杀商品ID [{}] 抢购人数{} 秒杀个数 {}", killId, totalNum, killCount);
     return Result.ok();
   }
 

@@ -102,7 +102,7 @@
     WHERE `seckill_id` = #{pojo.seckillId}
   </update>
   <update id="initSeckill">
-    UPDATE seckill SET number = 10000 WHERE seckill_id= #{seckillId}
+    UPDATE seckill SET number = 10 WHERE seckill_id= #{seckillId}
   </update>
   <select id="selectById" resultMap="AllColumnMap">
     select

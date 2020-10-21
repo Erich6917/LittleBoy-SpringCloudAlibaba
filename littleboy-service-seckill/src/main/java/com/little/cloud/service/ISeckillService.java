@@ -12,4 +12,8 @@ public interface ISeckillService {
   void startSeckill(long killId, long userId);
 
   int getCountKill(long killId);
+
+  Boolean startSeckillLock(long killId, long userId);
+
+  Boolean startAopSeckillLock(long killId, long userId);
 }
