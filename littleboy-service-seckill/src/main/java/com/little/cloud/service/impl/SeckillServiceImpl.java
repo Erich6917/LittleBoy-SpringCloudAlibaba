@@ -1,5 +1,6 @@
 package com.little.cloud.service.impl;
 
+import com.little.cloud.aop.ServiceLimit;
 import com.little.cloud.aop.Servicelock;
 import com.little.cloud.dto.Seckill;
 import com.little.cloud.dto.SuccessKilled;
@@ -106,5 +107,48 @@ public class SeckillServiceImpl implements ISeckillService {
       log.info("抢购异常 {}", e);
     }
     return rtFlag;
+  }
+
+  @Override
+  @Transactional
+  @ServiceLimit
+  public Boolean startSeckilDBPCC_ONE(long killId, long userId) {
+    Boolean rtFlag = Boolean.FALSE;
+    //for update
+    Seckill seckill = seckillService.selectByIdForupdate(killId);
+    //大于0 进行商品扣减 并进行生成成功抢购记录
+    Long number = seckill.getNumber();
+    if (number > 0) {
+      SuccessKilled successKilled = new SuccessKilled();
+      successKilled.setUserId(userId);
+      successKilled.setCreateTime(new Date());
+      successKilled.setSeckillId(killId);
+      successKilled.setState(0);
+      successKilledService.insert(successKilled);
+      seckillService.cutOne(killId);
+      return Boolean.TRUE;
+    } else {
+//      log.info("sorry {} 商品已抢空", userId);
+      return Boolean.FALSE;
+    }
+  }
+
+  @Override
+  public Boolean startSeckilDBPCC_TWO(long killId, long userId) {
+    //for update
+    int numeber = seckillService.cutOneForupdate(killId);
+    //大于0 进行商品扣减 并进行生成成功抢购记录
+    if (numeber > 0) {
+      SuccessKilled successKilled = new SuccessKilled();
+      successKilled.setUserId(userId);
+      successKilled.setCreateTime(new Date());
+      successKilled.setSeckillId(killId);
+      successKilled.setState(0);
+      successKilledService.insert(successKilled);
+      return Boolean.TRUE;
+    } else {
+//      log.info("sorry {} 商品已抢空", userId);
+      return Boolean.FALSE;
+    }
   }
 }

@@ -21,4 +21,8 @@ public interface SeckillDao {
   Seckill selectById(@Param("seckillId") long seckillId);
 
   int cutOne(@Param("seckillId")  long seckillId);
+
+  Seckill selectByIdForupdate(@Param("seckillId")  long killId);
+
+  int cutOneForupdate(@Param("seckillId") long killId);
 }
