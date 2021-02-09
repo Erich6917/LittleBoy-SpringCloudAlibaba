@@ -1,5 +1,6 @@
 package com.little.cloud.controller;
 
+import java.lang.management.MonitorInfo;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,7 +35,13 @@ public class MTest {
     log.info("每月归还{} 利息共计 {} 年利率 {} 月利率 {} ", monthlyReturn, totalInterest, bankInterestYear,
         bankInterestMonth);
 
-    log.info("方案二 刷信卡 万55");
+    log.info("方案二 银行说的年化率 5.28%");
+    float rate_cheat = 5.28f * 0.01f;
+    totalInterest = MONEY * rate_cheat;
+    float money_pay_month = (MONEY + totalInterest) / 12;
+    log.info("本金{} 表面年化率{} 共计利息支出{} ,月支付{}", MONEY, rate_cheat, totalInterest, money_pay_month);
+
+    log.info("方案三 刷信卡 万55");
     log.info("本金 {} 刷卡万利息 {} 采用等额本息", MONEY, CARD_MONTH_MONEY);
     float cartMonthly = MONEY / CAL_MONTH;
     float last = MONEY;
@@ -51,22 +58,5 @@ public class MTest {
     log.info("利息共计 {} 年利率 {} 月利率 {} ", total, rateYear, rateMonth);
   }
 
-//  public static void main(String[] args) {
-//    MTest tool = new MTest();
-//    float eachMonth = 2005.62f;
-//    float total = 0;
-//    for (int i = 12; i > 0; i--) {
-//      float moneyMonth = eachMonth * i;
-//      float interest = tool.cardMoney(moneyMonth);
-//      total += interest;
-//      log.info("Month {}, 本金 {}, 利息 {}", i, moneyMonth, interest);
-//    }
-//    log.info("共计利息 {}", total);
-//  }
-//
-//  public float cardMoney(float total) {
-//
-//    return total * 55 / 10000;
-//  }
 
 }
