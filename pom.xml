@@ -20,6 +20,7 @@
     <module>littleboy-show-thread</module>
     <module>littleboy-demo-netty</module>
     <module>littleboy-demo-activiti7</module>
+    <module>littleboy-demo-act</module>
   </modules>
   <packaging>pom</packaging>
 
